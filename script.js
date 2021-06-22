@@ -1,18 +1,25 @@
 class ToDo {
     constructor() {}
 
-    addToList(input, inputText, button) {
+    addToList(input, inputText) {
+        //creates elements for new todo input
         let liDiv = document.createElement('div')
         let li = document.createElement('li')
         let del = document.createElement('BUTTON')
+        //assigns attributes to allows css to manip
         liDiv.setAttribute('class', 'new-entry')
-        //del.setAttribute('div-entry', '')
-        del.setAttribute('onclick', 'test(this)')
         del.textContent = "Del"
+        //creates event listener for new delete button 
+        del.addEventListener('click', () => {
+            let deleteParentNode = del.parentNode
+            toDo.delete(deleteParentNode)
+        })
+        //sets text content of new todo and append it to ul
         li.textContent = inputText
         liDiv.append(li, del)
         toDoListUl.append(liDiv)
-        input.innerText = ""
+
+        input.value=''
     }
 
     delete(parentNode) {
@@ -30,19 +37,12 @@ class ToDo {
 const submit = document.querySelector('[submit-button]')
 const newToDo = document.querySelector('input[new-todo]')
 const toDoListUl = document.querySelector('ul[item-list]')
-let btn=null;
+let btn = null;
 
 const toDo = new ToDo()
 
 
 submit.addEventListener('click', () => {
-    btn = toDo.addToList(newToDo, newToDo.value)
-    
+    toDo.addToList(newToDo, newToDo.value)
+
 })
-
-function test(elem) {
-    let deleteParentNode = elem.parentNode
-
-    toDo.delete(deleteParentNode)
-}
-

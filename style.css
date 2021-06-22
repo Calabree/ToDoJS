@@ -68,8 +68,13 @@ li{
 }
 
 .new-entry button{
+    background-color: rgba(255,255, 255, .75);
     border: none;
     border-radius: 10px;
     width: 4rem;
 }
 
+.new-entry button:hover{
+    background-color: rgba(255,255, 255, 1);
+  
+}
